@@ -72,7 +72,7 @@ function fluxinfo_settings_page() {
 		</tr>
         <tr valign="top">
 	        <th scope="row"><?php echo esc_html(__( 'Daily Advance Notice (Days)', 'fluxinfo' )); ?></th>
-    	    <td><input type="text" name="fluxinfo_renew_reminder_days" value="<?php echo esc_attr( get_option('fluxinfo_renew_reminder_days') ); ?>" /></td>
+    	    <td><input type="number" name="fluxinfo_renew_reminder_days" value="<?php echo esc_attr( get_option('fluxinfo_renew_reminder_days') ); ?>" /></td>
         </tr>
     </table>
 
