@@ -56,7 +56,7 @@ function fluxinfo_settings_page() {
     	</th>
     </tr>
 	<tr>
-		<td scope="row" style="padding-bottom: 0;"><p><?php echo esc_html(fluxinfo_get_all_instances()); ?></p></td>
+		<td scope="row" style="padding-bottom: 0;"><p><?php echo fluxinfo_get_all_instances(); ?></p></td>
 	</tr>
 
     </table>
@@ -92,7 +92,7 @@ function fluxinfo_settings_page() {
 
 		<p style="font-size: 12px;">
 			
-			<a href="https://github.com/runonflux/fluxinfo" target="_blank"><?php echo esc_html(__( 'View on GitHub', 'fluxinfo' )); ?><span class="dashicons dashicons-external" style="font-size: 15px; margin-top: 2px; text-decoration: none;"></span></a>
+			<a href="https://github.com/RunOnFlux/FluxInfoWP" target="_blank"><?php echo esc_html(__( 'View on GitHub', 'fluxinfo' )); ?><span class="dashicons dashicons-external" style="font-size: 15px; margin-top: 2px; text-decoration: none;"></span></a>
 		
 		</p>
 

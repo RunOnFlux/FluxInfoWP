@@ -161,7 +161,7 @@ function fluxinfo_get_all_instances() {
 			$up = $up_time . " days";
 		}
 		$data = fluxinfo_get_operator_status($nodeip);
-		$lines .= "<tr><td>". $nodeip ."</td><td>". $up ."</td><td>". $data->status ."</td><td>". $data->sequenceNumber ."</td><td>". $data->masterIP ."</td><tr>\n";
+		$lines .= "<tr><td>". esc_html($nodeip) ."</td><td>". esc_html($up) ."</td><td>". esc_html($data->status) ."</td><td>". esc_html($data->sequenceNumber) ."</td><td>". esc_html($data->masterIP) ."</td><tr>\n";
 	}
 	$lines .= "</table>\n";
 	return $lines;
