@@ -84,9 +84,9 @@ function fluxinfo_settings_page() {
 
 		<p style="font-size: 15px; font-weight: bold;"><?php echo esc_html(__( '100% free plugin developed by', 'fluxinfo' )); ?> Tom Moulton, <a href="https://www.RunOnFlux.com" target="_blank">InFlux Inc</a></p>
 
-		<p style="font-size: 15px;">- <?php echo esc_html(__( 'Find this plugin useful?', 'fluxinfo' )); ?> <a href="https://wordpress.org/support/plugin/TBD-flux-info/reviews/#new-post" target="_blank"><?php echo esc_html(__( 'Please submit a review', 'fluxinfo' )); ?></a> <a href="https://wordpress.org/support/plugin/fluxinfo/reviews/#new-post" target="_blank" style="text-decoration: none;">⭐️⭐️⭐️⭐️⭐️</a></p>
+		<p style="font-size: 15px;">- <?php echo esc_html(__( 'Find this plugin useful?', 'fluxinfo' )); ?> <a href="https://wordpress.org/support/plugin/flux-info/reviews/#new-post" target="_blank"><?php echo esc_html(__( 'Please submit a review', 'fluxinfo' )); ?></a> <a href="https://wordpress.org/support/plugin/fluxinfo/reviews/#new-post" target="_blank" style="text-decoration: none;">⭐️⭐️⭐️⭐️⭐️</a></p>
 
-		<p style="font-size: 15px;">- <?php echo esc_html(__( 'Need help? Have a suggestion?', 'fluxinfo' )); ?> <a href="https://wordpress.org/support/plugin/TBD-flux-info" target="_blank"><?php echo esc_html(__( 'Create a support topic', 'fluxinfo' )); ?><span class="dashicons dashicons-external" style="font-size: 15px; margin-top: 5px; text-decoration: none;"></span></a></p>
+		<p style="font-size: 15px;">- <?php echo esc_html(__( 'Need help? Have a suggestion?', 'fluxinfo' )); ?> <a href="https://wordpress.org/support/plugin/flux-info" target="_blank"><?php echo esc_html(__( 'Create a support topic', 'fluxinfo' )); ?><span class="dashicons dashicons-external" style="font-size: 15px; margin-top: 5px; text-decoration: none;"></span></a></p>
 
 		<br/>
 
