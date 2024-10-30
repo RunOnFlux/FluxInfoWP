@@ -2,11 +2,11 @@
 /**
 * Plugin Name: Flux Info
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.0
+* Version: 1.0.1
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
-* Text Domain: fluxinfo
+* Text Domain: flux-info
 *
 **/
 
@@ -51,7 +51,7 @@ function fluxinfo_settings_link_plugin( $actions, $plugin_file )
 	if (!isset($plugin))
 		$plugin = plugin_basename(__FILE__);
 	if ($plugin == $plugin_file) {
-		$settings = array('settings' => '<a href="options-general.php?page=fluxinfo%2Fadmin-options.php">' . __('Settings', 'fluxinfo') . '</a>');
+		$settings = array('settings' => '<a href="options-general.php?page=fluxinfo%2Fadmin-options.php">' . __('Settings', 'flux-info') . '</a>');
     	$actions = array_merge($settings, $actions);
 	}
 
@@ -150,21 +150,7 @@ function fluxinfo_get_all_instances() {
 	if ($body->status != 'success') {
 		return false;
 	}
-	$lines = "<table><tr><th>Node</th><th>Uptime</th><th>Operator</th><th>db Sync</th><th>Master IP</th></tr>\n";
-	foreach ($body->data as $node) {
-		$nodeip = explode(':', $node->ip)[0];
-		$start_time = strtotime($node->runningSince);
-		$up_time = (int)((time() - $start_time)/(60*60)); // Uptime in hours
-		if ($up_time < 48) $up = $up_time ." hours";
-		else {
-			$up_time = (int)($up_time/24);
-			$up = $up_time . " days";
-		}
-		$data = fluxinfo_get_operator_status($nodeip);
-		$lines .= "<tr><td>". esc_html($nodeip) ."</td><td>". esc_html($up) ."</td><td>". esc_html($data->status) ."</td><td>". esc_html($data->sequenceNumber) ."</td><td>". esc_html($data->masterIP) ."</td><tr>\n";
-	}
-	$lines .= "</table>\n";
-	return $lines;
+	return $body->data;
 }
 
 function fluxinfo_get_operator_status($ip) {
