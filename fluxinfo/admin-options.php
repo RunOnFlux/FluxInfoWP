@@ -66,8 +66,10 @@ function fluxinfo_settings_page() {
 	<?php
 		$nodes = fluxinfo_get_all_instances();
 		foreach ($nodes as $node) {
-			$nodeip = explode(':', $node->ip)[0];
-			$nodeapi = substr($node->ip, 0, -1). '6';
+			$nodeapi = explode(':', $node->ip);
+			$nodeip = $nodeapi[0];
+			if (count($nodeapi) == 1) $nodeweb = $nodeip .':16126';
+			else $nodeweb = $nodeip . ':' . substr($nodeapi[1], 0, -1). '6';
 			$start_time = strtotime($node->runningSince);
 			$up_time = (int)((time() - $start_time)/(60*60)); // Uptime in hours
 			if ($up_time < 48) $up = $up_time ." hours";
@@ -76,7 +78,7 @@ function fluxinfo_settings_page() {
 				$up = $up_time . " days";
 			}
 			$data = fluxinfo_get_operator_status($nodeip);
-			echo '<tr><td style="border: 1px solid #ddd;"><a href="http://' . esc_html($nodeapi) . '" target="_blank">'. esc_html($nodeip) .'</a></td>';
+			echo '<tr><td style="border: 1px solid #ddd;"><a href="http://' . esc_html($nodeweb) . '" target="_blank">'. esc_html($nodeip) .'</a></td>';
 			echo '<td style="border: 1px solid #ddd;">'. esc_html($up) .'</td>';
 			echo '<td style="border: 1px solid #ddd;">'. esc_html($data->status) .'</td>';
 			echo '<td style="border: 1px solid #ddd;">'. esc_html($data->sequenceNumber) .'</td>';
