@@ -57,11 +57,17 @@ function fluxinfo_settings_page() {
     </tr>
 	<tr>
 		<td scope="row" style="padding-bottom: 0;"><p>
-	<table><tr><th>Node</th><th>Uptime</th><th>Operator</th><th>db Sync</th><th>Master IP</th></tr>
+	<table><tr>
+		<th style="background-color: #ccc; border: 1px solid #ddd;">Node</th>
+		<th style="background-color: #ccc; border: 1px solid #ddd;">Uptime</th>
+		<th style="background-color: #ccc; border: 1px solid #ddd;">Operator</th>
+		<th style="background-color: #ccc; border: 1px solid #ddd;">db Sync</th>
+		<th style="background-color: #ccc; border: 1px solid #ddd;">Master IP</th></tr>
 	<?php
 		$nodes = fluxinfo_get_all_instances();
 		foreach ($nodes as $node) {
 			$nodeip = explode(':', $node->ip)[0];
+			$nodeapi = substr($node->ip, 0, -1). '6';
 			$start_time = strtotime($node->runningSince);
 			$up_time = (int)((time() - $start_time)/(60*60)); // Uptime in hours
 			if ($up_time < 48) $up = $up_time ." hours";
@@ -70,7 +76,11 @@ function fluxinfo_settings_page() {
 				$up = $up_time . " days";
 			}
 			$data = fluxinfo_get_operator_status($nodeip);
-			echo "<tr><td>". esc_html($nodeip) ."</td><td>". esc_html($up) ."</td><td>". esc_html($data->status) ."</td><td>". esc_html($data->sequenceNumber) ."</td><td>". esc_html($data->masterIP) ."</td><tr>\n";
+			echo '<tr><td style="border: 1px solid #ddd;"><a href="http://' . esc_html($nodeapi) . '" target="_blank">'. esc_html($nodeip) .'</a></td>';
+			echo '<td style="border: 1px solid #ddd;">'. esc_html($up) .'</td>';
+			echo '<td style="border: 1px solid #ddd;">'. esc_html($data->status) .'</td>';
+			echo '<td style="border: 1px solid #ddd;">'. esc_html($data->sequenceNumber) .'</td>';
+			echo '<td style="border: 1px solid #ddd;">'. esc_html($data->masterIP) ."</td><tr>\n";
 		}
 ?></table></p></td>
 	</tr>

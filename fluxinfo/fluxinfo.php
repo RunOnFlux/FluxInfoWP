@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Flux Info
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.1
+* Version: 1.0.2
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
@@ -42,6 +42,9 @@ add_action('admin_init', function () {
   }
 });
  **/
+
+ add_action( 'plugins_loaded', 'fluxinfo_display_notifications' );
+
 // Plugin List - Settings Link
 add_filter( 'plugin_action_links', 'fluxinfo_settings_link_plugin', 10, 5 );
 function fluxinfo_settings_link_plugin( $actions, $plugin_file )
@@ -163,4 +166,52 @@ function fluxinfo_get_operator_status($ip) {
 	$body = json_decode(wp_remote_retrieve_body( $response ));
 	if (isset($body->status)) return $body;
 	return array("status" => "unknown", "sequenceNumber" => "", "masterIP"=> "");
+}
+
+function fluxinfo_display_notifications() {
+	$is_admin = current_user_can('administrator');
+	if ($is_admin) {
+		fluxinfo_check_notifications();
+	}
+}
+
+function fluxinfo_check_notifications() {
+	// App Renewal Notification
+	if(get_option('fluxinfo_renew_reminder')) { // Box is checked
+		$max_days = get_option('fluxinfo_renew_reminder_days');
+		$exp_days = fluxinfo_app_days_remaining();
+		if ($exp_days < $max_days) add_action( 'admin_notices', 'fluxinfo_expiration_notice' );
+	}
+}
+
+function fluxinfo_expiration_notice() {
+    // Check if the notice has been dismissed (within the last 24 hours)
+    $dismissed = get_transient('fluxinfo_expiration_notice_dismissed');
+
+    // Only show the notice if it's not dismissed
+    if ($dismissed === false) {
+        ?>
+        <div class="notice notice-info is-dismissible fluxinfo-expiration-notice">
+            <p><?php echo esc_attr( get_option('fluxinfo_name') ) . esc_html(__(' and expires in ', 'flux-info' )) . esc_html(fluxinfo_app_days_remaining()) . esc_html(__(' days', 'flux-info' )); ?></p>
+        </div>
+        <script type="text/javascript">
+            // Use jQuery to handle the dismiss button click
+            jQuery(document).on('click', '.fluxinfo-expiration-notice .notice-dismiss', function() {
+                // Send AJAX request to mark the notice as dismissed
+                jQuery.post(ajaxurl, {
+                    action: 'fluxinfo_expiration_dismiss_notice'
+                });
+            });
+        </script>
+        <?php
+    }
+}
+
+// AJAX action to mark the notice as dismissed
+add_action('wp_ajax_fluxinfo_expiration_dismiss_notice', 'fluxinfo_expiration_dismiss_notice');
+
+function fluxinfo_expiration_dismiss_notice() {
+    // Set a transient to remember the dismissal for 24 hours
+    set_transient('fluxinfo_expiration_notice_dismissed', true, 24 * HOUR_IN_SECONDS);
+    wp_die(); // this is required to terminate immediately and return a response
 }

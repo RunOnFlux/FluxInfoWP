@@ -3,7 +3,7 @@ Contributors: Tom Moulton
 Tags: runonflux, flux
 Requires at least: 4.7
 Tested up to: 6.6
-Stable Tag: 1.0.1
+Stable Tag: 1.0.2
 License: GPLv3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,3 +36,8 @@ Please consider helping out by <a href="https://wordpress.org/support/plugin/TBD
 
 = Version 1.0.1 - 28 Oct 2024 =
 - First Release basic Flux Information
+
+= Version 1.0.2 - 2 Nov 2024
+- Format Node Table
+- Add URL to node UR
+- Add dismissable app expiration notice (24hrs)
