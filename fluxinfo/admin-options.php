@@ -38,7 +38,7 @@ function fluxinfo_settings_page() {
 
 <h1><?php echo esc_html(__( 'App Info for Flux', 'info-for-flux' )); ?></h1>
 
-<p><?php echo esc_html(__( 'This plugin will monitor and display Flux Network (RunOnFlux.io) information such as app Expiration abd more.', 'info-for-flux' )); ?></p>
+<p><?php echo esc_html(__( 'This plugin will monitor and display Flux Network (RunOnFlux.com) information such as app Expiration abd more.', 'info-for-flux' )); ?></p>
 
 <?php fluxinfo_get_app_specs(); ?>
 
@@ -110,7 +110,7 @@ function fluxinfo_settings_page() {
 
     <div class="rfw-admin-promo">
 
-		<p style="font-size: 15px; font-weight: bold;"><?php echo esc_html(__( '100% free plugin developed by', 'info-for-flux' )); ?> Tom Moulton, <a href="https://www.RunOnFlux.io" target="_blank">InFlux Inc</a></p>
+		<p style="font-size: 15px; font-weight: bold;"><?php echo esc_html(__( '100% free plugin developed by', 'info-for-flux' )); ?> Tom Moulton, <a href="https://www.RunOnFlux.com" target="_blank">InFlux Inc</a></p>
 
 		<p style="font-size: 15px;">- <?php echo esc_html(__( 'Find this plugin useful?', 'info-for-flux' )); ?> <a href="https://wordpress.org/support/plugin/info-for-flux/reviews/#new-post" target="_blank"><?php echo esc_html(__( 'Please submit a review', 'info-for-flux' )); ?></a> <a href="https://wordpress.org/support/plugin/info-for-flux/reviews/#new-post" target="_blank" style="text-decoration: none;">⭐️⭐️⭐️⭐️⭐️</a></p>
 
