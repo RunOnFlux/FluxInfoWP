@@ -1,12 +1,12 @@
 <?php
 /**
-* Plugin Name: Flux Info
+* Plugin Name: App Info for Flux
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.2
+* Version: 1.0.3
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
-* Text Domain: flux-info
+* Text Domain: info-for-flux
 *
 **/
 
@@ -54,7 +54,7 @@ function fluxinfo_settings_link_plugin( $actions, $plugin_file )
 	if (!isset($plugin))
 		$plugin = plugin_basename(__FILE__);
 	if ($plugin == $plugin_file) {
-		$settings = array('settings' => '<a href="options-general.php?page=fluxinfo%2Fadmin-options.php">' . __('Settings', 'flux-info') . '</a>');
+		$settings = array('settings' => '<a href="options-general.php?page=fluxinfo%2Fadmin-options.php">' . __('Settings', 'info-for-flux') . '</a>');
     	$actions = array_merge($settings, $actions);
 	}
 
@@ -192,7 +192,7 @@ function fluxinfo_expiration_notice() {
     if ($dismissed === false) {
         ?>
         <div class="notice notice-info is-dismissible fluxinfo-expiration-notice">
-            <p><?php echo esc_attr( get_option('fluxinfo_name') ) . esc_html(__(' and expires in ', 'flux-info' )) . esc_html(fluxinfo_app_days_remaining()) . esc_html(__(' days', 'flux-info' )); ?></p>
+            <p><?php echo esc_attr( get_option('fluxinfo_name') ) . esc_html(__(' and expires in ', 'info-for-flux' )) . esc_html(fluxinfo_app_days_remaining()) . esc_html(__(' days', 'info-for-flux' )); ?></p>
         </div>
         <script type="text/javascript">
             // Use jQuery to handle the dismiss button click

@@ -1,6 +1,6 @@
-# Flux Info
+# App Info for Flux
 
-Flux Info is a wordpress plugin that displays Flux related information about the running application.
+App Info for Flux is a wordpress plugin that displays Flux related information about the running application.
 It also lists all the nodes in the cluster and displays basic status information
 
 Future enhancements will include

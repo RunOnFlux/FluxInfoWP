@@ -1,9 +1,9 @@
-=== Flux Info  ===
+=== App Info for Flux ===
 Contributors: Tom Moulton
 Tags: runonflux, flux
 Requires at least: 4.7
 Tested up to: 6.6
-Stable Tag: 1.0.2
+Stable Tag: 1.0.3
 License: GPLv3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,7 +21,7 @@ Install and visit Settings page
 
 Yes, this plugin is completely free with no paid version.
 
-Please consider helping out by <a href="https://wordpress.org/support/plugin/TBD-flux-info/reviews/#new-post">leaving a review</a>, or <a href="https://www.paypal.com/donate/?hosted_button_id=RX28BBH7L5XDS">donate</a>.
+Please consider helping out by <a href="https://wordpress.org/support/plugin/TBD-info-for-flux/reviews/#new-post">leaving a review</a>, or <a href="https://www.paypal.com/donate/?hosted_button_id=RX28BBH7L5XDS">donate</a>.
 
 == Installation ==
 
@@ -41,3 +41,6 @@ Please consider helping out by <a href="https://wordpress.org/support/plugin/TBD
 - Format Node Table
 - Add URL to node UR
 - Add dismissable app expiration notice (24hrs)
+
+= Version 1.0.3 - 3 Nov 2024
+- Update plugin name to App Info for Flux
