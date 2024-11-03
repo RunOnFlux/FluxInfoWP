@@ -21,7 +21,7 @@ Install and visit Settings page
 
 Yes, this plugin is completely free with no paid version.
 
-Please consider helping out by <a href="https://wordpress.org/support/plugin/TBD-info-for-flux/reviews/#new-post">leaving a review</a>, or <a href="https://www.paypal.com/donate/?hosted_button_id=RX28BBH7L5XDS">donate</a>.
+Please consider helping out by <a href="https://wordpress.org/support/plugin/info-for-flux/reviews/#new-post">leaving a review</a>, or <a href="https://www.paypal.com/donate/?hosted_button_id=RX28BBH7L5XDS">donate</a>.
 
 == Installation ==
 
