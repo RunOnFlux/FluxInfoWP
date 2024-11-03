@@ -1,10 +1,10 @@
 <?php
 /**
 * Plugin Name: App Info for Flux
-* Description: Display and Monitor Flux Network (runonflux.com) 
+* Description: Display and Monitor Flux Network (runonflux.io) 
 * Version: 1.0.3
-* Author: Tom Moulton tom@runonflux.com
-* Author URI: https://runonflux.com
+* Author: Tom Moulton tom@runonflux.io
+* Author URI: https://runonflux.io
 * License: GPLv3 or later
 * Text Domain: info-for-flux
 *
