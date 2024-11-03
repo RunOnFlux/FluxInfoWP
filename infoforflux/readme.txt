@@ -25,9 +25,9 @@ Please consider helping out by <a href="https://wordpress.org/support/plugin/inf
 
 == Installation ==
 
-1. Upload 'fluxinfo' to the '/wp-content/plugins/' directory.
+1. Upload 'infoforflux.zip' to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Customise plugin settings in WordPress admin at Settings > FluxInfo
+3. Customise plugin settings in WordPress admin at Settings > infoforflux
 
 == Changelog ==
 
