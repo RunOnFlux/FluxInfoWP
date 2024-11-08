@@ -2,7 +2,7 @@
 /**
 * Plugin Name: App Info for Flux
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.3
+* Version: 1.0.4
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
@@ -10,7 +10,7 @@
 *
 **/
 
-include( plugin_dir_path( __FILE__ ) . 'admin-options.php');
+include( 'admin-options.php');
 
 /**
  * On activate redirect to settings page
@@ -21,6 +21,7 @@ register_activation_hook(__FILE__, function () {
   delete_option('infoforflux_expire_block');
   delete_option('infoforflux_operator_port');
   delete_option('infoforflux_renew_reminder_days');
+  delete_transient('infoforflux_expiration_notice_dismissed');
   if (!get_option('infoforflux_name')) {
     add_option('infoforflux_name', $name);
     add_option('infoforflux_expire_block', 0);
@@ -29,6 +30,7 @@ register_activation_hook(__FILE__, function () {
   } else {
 	update_option('infoforflux_name', $name);
   }
+  infoforflux_get_app_specs();
 });
 /**
 register_activation_hook(__FILE__, function () {
@@ -43,6 +45,7 @@ add_action('admin_init', function () {
 });
  **/
 
+// add_action( 'plugins_loaded', 'infoforflux_display_notifications' );
  add_action( 'plugins_loaded', 'infoforflux_display_notifications' );
 
 // Plugin List - Settings Link
@@ -184,6 +187,26 @@ function infoforflux_check_notifications() {
 	}
 }
 
+function infoforflux_enqueue_admin_scripts($hook) {
+    // Enqueue JavaScript only on the admin dashboard
+    if ('infoforflux.php' === $hook) {
+        wp_enqueue_script(
+            'infoforflux-expiration-notice-js',
+            plugin_dir_url(__FILE__) . 'infoforflux-expiration-notice.js',
+            array('jquery'), // jQuery as a dependency
+            '1.0',
+            true
+        );
+
+        // Pass ajaxurl to the script
+        wp_localize_script('infoforflux-expiration-notice-js', 'infoforflux_ajax', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'action'   => 'infoforflux_expiration_dismiss_notice',
+        ));
+    }
+}
+add_action('admin_enqueue_scripts', 'infoforflux_enqueue_admin_scripts');
+
 function infoforflux_expiration_notice() {
     // Check if the notice has been dismissed (within the last 24 hours)
     $dismissed = get_transient('infoforflux_expiration_notice_dismissed');
@@ -191,18 +214,9 @@ function infoforflux_expiration_notice() {
     // Only show the notice if it's not dismissed
     if ($dismissed === false) {
         ?>
-        <div class="notice notice-info is-dismissible infoforflux-expiration-notice">
-            <p><?php echo esc_attr( get_option('infoforflux_name') ) . esc_html(__(' and expires in ', 'infoforflux' )) . esc_html(infoforflux_app_days_remaining()) . esc_html(__(' days', 'infoforflux' )); ?></p>
+        <div class="notice notice-info is-dismissible infoforflux-expiration-notice" style="background-color: LightPink;">
+            <p><?php echo esc_attr( get_option('infoforflux_name') ) . esc_html(__(' expires in ', 'infoforflux' )) . esc_html(infoforflux_app_days_remaining()) . esc_html(__(' days', 'infoforflux' )); ?></p>
         </div>
-        <script type="text/javascript">
-            // Use jQuery to handle the dismiss button click
-            jQuery(document).on('click', '.infoforflux-expiration-notice .notice-dismiss', function() {
-                // Send AJAX request to mark the notice as dismissed
-                jQuery.post(ajaxurl, {
-                    action: 'infoforflux_expiration_dismiss_notice'
-                });
-            });
-        </script>
         <?php
     }
 }

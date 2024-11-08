@@ -8,20 +8,21 @@ add_action('admin_menu', 'infoforflux_create_menu');
 function infoforflux_create_menu() {
 
 	//create new top-level menu
-	add_submenu_page( 'options-general.php', 'App Info', 'App Info', 'manage_options', 'infoforflux/admin-options.php', 'infoforflux_settings_page' );
+	add_submenu_page( 'tools.php', 'App Info for Flux', 'App Info for Flux', 'manage_options', 'infoforflux/admin-options.php', 'infoforflux_settings_page' );
 
 	//call register settings function
-	add_action( 'admin_init', 'register_infoforflux_settings' );
+	add_action( 'admin_init', 'infoforflux_register_settings' );
 }
 
 // Register Settings
-function register_infoforflux_settings() {
-	register_setting( 'infoforflux-settings-group', 'infoforflux_name' );
-	register_setting( 'infoforflux-settings-group', 'infoforflux_expire_block' );
-	register_setting( 'infoforflux-settings-group', 'infoforflux_operator_port' );
-	register_setting( 'infoforflux-settings-group', 'infoforflux_theme' );
-	register_setting( 'infoforflux-settings-group', 'infoforflux_renew_reminder' );
-	register_setting( 'infoforflux-settings-group', 'infoforflux_renew_reminder_days' );
+function infoforflux_register_settings() {
+	$santize = array('type' => 'string','sanitize_callback' => 'sanitize_text_field');
+	register_setting( 'infoforflux-settings-group', 'infoforflux_name', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_expire_block', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_operator_port', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_theme', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_renew_reminder', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_renew_reminder_days', $santize );
 }
 
 // Keys Updated
@@ -38,7 +39,7 @@ function infoforflux_settings_page() {
 
 <h1><?php echo esc_html(__( 'App Info for Flux', 'infoforflux' )); ?></h1>
 
-<p><?php echo esc_html(__( 'This plugin will monitor and display Flux Network (RunOnFlux.com) information such as app Expiration abd more.', 'infoforflux' )); ?></p>
+<p><?php echo esc_html(__( 'This plugin will monitor and display Flux Network (RunOnFlux.io) information such as app Expiration abd more.', 'infoforflux' )); ?></p>
 
 <?php infoforflux_get_app_specs(); ?>
 
@@ -52,7 +53,7 @@ function infoforflux_settings_page() {
     <tr valign="top">
     	<th scope="row" style="padding-bottom: 0;">
     	<p style="font-size: 19px; margin-top: 0;"><?php echo esc_html(__( 'Flux Information:', 'infoforflux' )); ?></p>
-    	<p style="font-size: 19px; margin-bottom: 2px;"><?php echo esc_html(__( 'App name: ', 'infoforflux' )) . esc_attr( get_option('infoforflux_name') ) . esc_html(__(' and expires in ', 'infoforflux' )) . esc_html(infoforflux_app_days_remaining()) . esc_html(__(' days', 'infoforflux' )); ?></p>
+    	<p style="font-size: 19px; margin-bottom: 2px;"><?php echo esc_html(__( 'App name: ', 'infoforflux' )) . esc_attr( get_option('infoforflux_name') ) . esc_html(__(' expires in ', 'infoforflux' )) . esc_html(infoforflux_app_days_remaining()) . esc_html(__(' days', 'infoforflux' )); ?></p>
     	</th>
     </tr>
 	<tr>
