@@ -2,7 +2,7 @@
 /**
 * Plugin Name: App Info for Flux
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.4
+* Version: 1.0.5
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
@@ -57,7 +57,7 @@ function infoforflux_settings_link_plugin( $actions, $plugin_file )
 	if (!isset($plugin))
 		$plugin = plugin_basename(__FILE__);
 	if ($plugin == $plugin_file) {
-		$settings = array('settings' => '<a href="options-general.php?page=infoforflux%2Fadmin-options.php">' . __('Settings', 'infoforflux') . '</a>');
+		$settings = array('settings' => '<a href="tools.php?page=infoforflux/admin-options.php">' . __('Settings', 'infoforflux') . '</a>');
     	$actions = array_merge($settings, $actions);
 	}
 
@@ -161,7 +161,8 @@ function infoforflux_get_all_instances() {
 
 function infoforflux_get_operator_status($ip) {
 	$port = esc_attr( get_option('infoforflux_operator_port') );
-	$response = wp_remote_get('http://'. $ip .':'. $port .'/status');
+	$url = 'http://'. $ip .':'. $port .'/status';
+	$response = wp_remote_get($url);
 	$status = wp_remote_retrieve_response_code( $response );
 	if ($status != 200) {
 		return array("status" => "err ". $status, "sequenceNumber" => "", "masterIP" => "");

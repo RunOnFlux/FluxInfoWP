@@ -3,7 +3,7 @@ Contributors: tomflux
 Tags: runonflux, flux
 Requires at least: 4.7
 Tested up to: 6.6
-Stable Tag: 1.0.4
+Stable Tag: 1.0.5
 License: GPLv3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,3 +56,6 @@ Terms and Conditions: https://runonflux.io/termsandconditions
 
 = Version 1.0.4 - 8 Nov 2024 =
 - Plugin coding stardards as per WP
+
+= Version 1.0.5 - 10 Nov 2024 =
+- Settings link from Plugin list broken due to moving menu from General Options to Tools
