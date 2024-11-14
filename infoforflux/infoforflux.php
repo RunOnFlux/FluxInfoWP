@@ -2,13 +2,16 @@
 /**
 * Plugin Name: App Info for Flux
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.5
+* Version: 1.0.6
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
 * Text Domain: infoforflux
 *
 **/
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 include( 'admin-options.php');
 

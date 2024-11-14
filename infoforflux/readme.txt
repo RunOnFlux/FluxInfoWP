@@ -3,7 +3,7 @@ Contributors: tomflux
 Tags: runonflux, flux
 Requires at least: 4.7
 Tested up to: 6.6
-Stable Tag: 1.0.5
+Stable Tag: 1.0.6
 License: GPLv3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
