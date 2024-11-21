@@ -2,7 +2,7 @@
 /**
 * Plugin Name: App Info for Flux
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.7
+* Version: 1.0.8
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
@@ -25,11 +25,17 @@ register_activation_hook(__FILE__, function () {
   delete_option('infoforflux_operator_port');
   delete_option('infoforflux_renew_reminder_days');
   delete_transient('infoforflux_expiration_notice_dismissed');
+  delete_option('infoforflux_wp_repo');
+  delete_option('infoforflux_mysql_repo');
+  delete_option('infoforflux_operator_repo');
   if (!get_option('infoforflux_name')) {
     add_option('infoforflux_name', $name);
     add_option('infoforflux_expire_block', 0);
     add_option('infoforflux_operator_port', 0);
     add_option('infoforflux_renew_reminder_days', 30);
+	add_option('infoforflux_wp_repo', '');
+	add_option('infoforflux_mysql_repo', '');
+	add_option('infoforflux_operator_repo', '');
   } else {
 	update_option('infoforflux_name', $name);
   }
@@ -122,9 +128,15 @@ function infoforflux_get_app_specs() {
 	update_option('infoforflux_expire_block', $endblock);
 	$port = 0;
 	foreach ($body->data->compose as $spec) {
+		if ($spec->name === 'wp') {
+			update_option('infoforflux_wp_repo', $spec->repotag);
+		}
+		if ($spec->name === 'mysql') {
+			update_option('infoforflux_mysql_repo', $spec->repotag);
+		}
 		if ($spec->name === 'operator') {
 			$port = $spec->ports[2];
-			break;
+			update_option('infoforflux_operator_repo', $spec->repotag);
 		}
 	}
 	update_option('infoforflux_operator_port', $port);

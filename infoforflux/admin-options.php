@@ -23,6 +23,9 @@ function infoforflux_register_settings() {
 	register_setting( 'infoforflux-settings-group', 'infoforflux_theme', $santize );
 	register_setting( 'infoforflux-settings-group', 'infoforflux_renew_reminder', $santize );
 	register_setting( 'infoforflux-settings-group', 'infoforflux_renew_reminder_days', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_wp_repo', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_mysql_repo', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_operator_repo', $santize );
 }
 
 // Keys Updated
@@ -32,6 +35,20 @@ function infoforflux_register_settings() {
 //	update_option('infoforflux_tested', 'no');
 //}
 
+function infoforflux_repo_check($name, $varname, $reponame, $tag) {
+	$repotag = get_option($varname);
+	$repo = explode(':', $repotag);
+	$notice = false;
+	if ($repotag !== $reponame .':'. $tag) { // Not expected repotag
+		if ($repo[0] === $reponame) { // Expected repo, different tag
+			$notice = $name .": " . $repotag ." - Standard Wordpress with exprimental tag: " . $repo[1];
+		} else {
+			$notice = $name .": Non-Standard repo: " . $repotag;
+		}
+	}
+	return $notice;
+}
+
 // Show Settings Page
 function infoforflux_settings_page() {
 ?>
@@ -39,7 +56,7 @@ function infoforflux_settings_page() {
 
 <h1><?php echo esc_html(__( 'App Info for Flux', 'infoforflux' )); ?></h1>
 
-<p><?php echo esc_html(__( 'This plugin will monitor and display Flux Network (RunOnFlux.io) information such as app Expiration abd more.', 'infoforflux' )); ?></p>
+<p><?php echo esc_html(__( 'This plugin will monitor and display Flux Network (RunOnFlux.io) information such as app Expiration and more.', 'infoforflux' )); ?></p>
 
 <?php infoforflux_get_app_specs(); ?>
 
@@ -54,7 +71,21 @@ function infoforflux_settings_page() {
     	<th scope="row" style="padding-bottom: 0;">
     	<p style="font-size: 19px; margin-top: 0;"><?php echo esc_html(__( 'Flux Information:', 'infoforflux' )); ?></p>
     	<p style="font-size: 19px; margin-bottom: 2px;"><?php echo esc_html(__( 'App name: ', 'infoforflux' )) . esc_attr( get_option('infoforflux_name') ) . esc_html(__(' expires in ', 'infoforflux' )) . esc_html(infoforflux_app_days_remaining()) . esc_html(__(' days', 'infoforflux' )); ?></p>
-    	</th>
+<?php
+	$notice = infoforflux_repo_check('WordPress', 'infoforflux_wp_repo', 'runonflux/wp-nginx', 'latest');
+	if ($notice) {
+		echo '<p style="font-size: 19px; margin-bottom: 2px;">' . esc_html($notice) . "</p>";
+	}
+	$notice = infoforflux_repo_check('Mysql', 'infoforflux_mysql_repo', 'mysql', '8.3.0');
+	if ($notice) {
+		echo '<p style="font-size: 19px; margin-bottom: 2px;">' . esc_html($notice) . "</p>";
+	}
+	$notice = infoforflux_repo_check('Operator', 'infoforflux_operator_repo', 'runonflux/shared-db', 'latest');
+	if ($notice) {
+		echo '<p style="font-size: 19px; margin-bottom: 2px;">' . esc_html($notice) . "</p>";
+	}
+?>
+		</th>
     </tr>
 	<tr>
 		<td scope="row" style="padding-bottom: 0;"><p>
