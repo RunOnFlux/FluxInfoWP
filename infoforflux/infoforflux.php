@@ -2,7 +2,7 @@
 /**
 * Plugin Name: App Info for Flux
 * Description: Display and Monitor Flux Network (runonflux.com) 
-* Version: 1.0.8
+* Version: 1.0.9
 * Author: Tom Moulton tom@runonflux.com
 * Author URI: https://runonflux.com
 * License: GPLv3 or later
@@ -133,6 +133,14 @@ function infoforflux_get_app_specs() {
 		}
 		if ($spec->name === 'mysql') {
 			update_option('infoforflux_mysql_repo', $spec->repotag);
+			$found = "missing";
+			foreach ($spec->commands as $cmd) {
+				if (strpos('--disable-log-bin', $cmd) !== FALSE) {
+					$found = "ok";
+				}
+			}
+			delete_option('infoforflux_mysql_nologbin');
+			add_option('infoforflux_mysql_nologbin', $found);
 		}
 		if ($spec->name === 'operator') {
 			$port = $spec->ports[2];

@@ -25,6 +25,7 @@ function infoforflux_register_settings() {
 	register_setting( 'infoforflux-settings-group', 'infoforflux_renew_reminder_days', $santize );
 	register_setting( 'infoforflux-settings-group', 'infoforflux_wp_repo', $santize );
 	register_setting( 'infoforflux-settings-group', 'infoforflux_mysql_repo', $santize );
+	register_setting( 'infoforflux-settings-group', 'infoforflux_mysql_nologbin', $santize );
 	register_setting( 'infoforflux-settings-group', 'infoforflux_operator_repo', $santize );
 }
 
@@ -83,6 +84,10 @@ function infoforflux_settings_page() {
 	$notice = infoforflux_repo_check('Operator', 'infoforflux_operator_repo', 'runonflux/shared-db', 'latest');
 	if ($notice) {
 		echo '<p style="font-size: 19px; margin-bottom: 2px;">' . esc_html($notice) . "</p>";
+	}
+	$nologbin = get_option('infoforflux_mysql_nologbin');
+	if ($nologbin != 'ok') {
+		echo '<p style="font-size: 19px; margin-bottom: 2px;">' . esc_html(__( 'App Spec: MYSQL Container missing --disable-log-bin option in commands[]', 'infoforflux')) . "</p>";
 	}
 ?>
 		</th>

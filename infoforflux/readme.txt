@@ -3,7 +3,7 @@ Contributors: tomflux
 Tags: runonflux, flux
 Requires at least: 4.7
 Tested up to: 6.7
-Stable Tag: 1.0.8
+Stable Tag: 1.0.9
 License: GPLv3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,7 +11,8 @@ Provides Flux specific information for WordPress app, also monitors app expirati
 
 == Description ==
 
-Displays dApp expiration date amd other Fulx network info
+Displays dApp expiration date and other Flux network info
+Will display notices about app specification updates that should be done.
 
 ## Getting Started ##
 
@@ -19,7 +20,7 @@ Install and visit Settings page
 
 ## Is it free to use? ##
 
-Yes, this plugin is completely free with no paid version.
+This plugin is completely free with no paid version.
 
 Please consider helping out by <a href="https://wordpress.org/support/plugin/infoforflux/reviews/#new-post">leaving a review</a>, or <a href="https://www.paypal.com/donate/?hosted_button_id=RX28BBH7L5XDS">donate</a>.
 
@@ -59,3 +60,9 @@ Terms and Conditions: https://runonflux.io/termsandconditions
 
 = Version 1.0.5 - 10 Nov 2024 =
 - Settings link from Plugin list broken due to moving menu from General Options to Tools
+
+= Version 1.0.8 - First Approved release 21 Nov 2024 ==
+
+= Version 1.0.9 - 23 Nov 2024
+- Update App Spec checking for mysql container
+- Fix typos in readme
