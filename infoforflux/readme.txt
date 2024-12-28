@@ -1,9 +1,9 @@
-=== App Info for Flux ===
+=== Info for Flux ===
 Contributors: tomflux
 Tags: runonflux, flux
 Requires at least: 4.7
 Tested up to: 6.7
-Stable Tag: 1.0.9
+Stable Tag: 1.0.10
 License: GPLv3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,3 +66,6 @@ Terms and Conditions: https://runonflux.io/termsandconditions
 = Version 1.0.9 - 23 Nov 2024
 - Update App Spec checking for mysql container
 - Fix typos in readme
+
+= Version 1.0.10 - 28 Dec 2024
+- Update plugin name to match slug Info for Flux

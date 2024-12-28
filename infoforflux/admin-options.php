@@ -8,7 +8,7 @@ add_action('admin_menu', 'infoforflux_create_menu');
 function infoforflux_create_menu() {
 
 	//create new top-level menu
-	add_submenu_page( 'tools.php', 'App Info for Flux', 'App Info for Flux', 'manage_options', 'infoforflux/admin-options.php', 'infoforflux_settings_page' );
+	add_submenu_page( 'tools.php', 'Info for Flux', 'Info for Flux', 'manage_options', 'infoforflux/admin-options.php', 'infoforflux_settings_page' );
 
 	//call register settings function
 	add_action( 'admin_init', 'infoforflux_register_settings' );
@@ -55,7 +55,7 @@ function infoforflux_settings_page() {
 ?>
 <div class="wrap">
 
-<h1><?php echo esc_html(__( 'App Info for Flux', 'infoforflux' )); ?></h1>
+<h1><?php echo esc_html(__( 'Info for Flux', 'infoforflux' )); ?></h1>
 
 <p><?php echo esc_html(__( 'This plugin will monitor and display Flux Network (RunOnFlux.io) information such as app Expiration and more.', 'infoforflux' )); ?></p>
 
